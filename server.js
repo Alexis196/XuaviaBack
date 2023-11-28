@@ -3,7 +3,7 @@ import indexRouter from './router/index.js'
 const app = express()
 
 app.use(express.json())
-app.use(express.urlencoded)
+app.use(express.urlencoded({ extended: true }));
 app.use(indexRouter)
 
 const PORT = 8080
