@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../../models/users.js';
 
+
 const getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
