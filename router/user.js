@@ -12,6 +12,7 @@ router.get('/', getAllUsers)
 router.get('/:id', oneUser)
 
 
-router.post('/', validator(registerSchema),createUser)
+router.post('/', validator(registerSchema), createUser)
+// router.post('/login', validator(loginSchema), loginUser)
 
 export default router
