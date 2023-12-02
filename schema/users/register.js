@@ -23,6 +23,11 @@ const registerSchema = Joi.object({
             'any.required': 'La contraseña es requerida',
             'string.min': 'La contraseña debe tener al menos 8 caracteres',
         }),
+    rol: Joi
+    .required()
+    .messages({
+        'any.required': 'El rol es requerido',
+    })
 })
 .unknown(true);
 
