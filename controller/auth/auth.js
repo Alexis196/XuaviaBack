@@ -8,8 +8,6 @@ const controller = {
     sign_up: async (req, res, next) => {
         req.body.is_online = true;
         req.body.is_admin = true;
-        req.body.is_mascoter = false;
-        req.body.is_user = true;
         req.body.is_verified = true;
         req.body.verify_code = crypto.randomBytes(10).toString('hex');
         req.body.password = bcryptjs.hashSync(req.body.password, 10);
@@ -29,14 +27,12 @@ const controller = {
     },
 
     sign_in: async (req, res, next) => {
-        console.log(req.user)
         try {
             let user = await User.findOneAndUpdate(
                 { mail: req.user.mail },
                 { is_online: true },
                 { new: true }
             )
-            console.log(user)
             user.password = null
             const token = jsonwebtoken.sign(
                 {id: user.id},
