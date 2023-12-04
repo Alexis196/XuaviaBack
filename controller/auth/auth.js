@@ -53,7 +53,6 @@ const controller = {
         },
 
     sign_out: async (req, res, next) => {
-        console.log(req.user)
         const { mail } = req.user
         try {
             await User.findOneAndUpdate(
