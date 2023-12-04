@@ -33,7 +33,6 @@ const controller = {
                 { is_online: true },
                 { new: true }
             )
-
             user.password = null
             const token = jsonwebtoken.sign(
                 {id: user.id},
