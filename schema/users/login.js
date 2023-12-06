@@ -8,7 +8,7 @@ const loginSchema = Joi.object({
         .messages({
             'any.required': 'No se ha ingresado un mail válido',
             'string.empty': 'No se ha ingresado ningún mail.',
-            'string.mail': 'El mail ingresado es inválido.'
+            'string.email': 'El mail ingresado es inválido.'
         }),
     password: Joi
         .string()
