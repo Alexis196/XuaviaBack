@@ -10,7 +10,9 @@ const router = express.Router()
 router.use('/users', userRoute)
 router.use('/services', servicesRouter)
 router.use('/categories', categoriesRouter)
+
 router.use('/roles', rolesRouter)
+
 
 
 export default router
