@@ -26,5 +26,6 @@ const serviceSchema = Joi.object({
         .required()
         .messages({
             'any.required': 'La categoria es requerida',
-        })
+        }),
+    image: Joi
 })
