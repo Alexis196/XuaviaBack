@@ -5,6 +5,7 @@ import cors from 'cors'
 import indexRouter from './router/index.js'
 import { errorHandler } from './middleware/errorHandler.js'
 import { errorNotFound } from './middleware/error.js'
+import Cloudinary from 'cloudinary'
 const app = express()
 
 app.use(cors())
