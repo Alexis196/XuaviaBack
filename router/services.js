@@ -1,5 +1,5 @@
 import express from 'express'
-import newService from '../controller/services/newService.js'
+import createNewService from '../controller/services/createNewService.js'
 import deleteService from '../controller/services/deleteService.js'
 import updateService from '../controller/services/updateServices.js'
 import isMascoter from '../middleware/mascoter/isMascoter.js'
@@ -12,7 +12,7 @@ const router = express.Router()
 router.get('/', getAllServices)
 router.get('/:id', getOneServer)
 
-router.post('/addservices', passport.authenticate('jwt', { session: false }), isMascoter, newService)
+router.post('/addservices', passport.authenticate('jwt', { session: false }), isMascoter, createNewService)
 router.post('/deleteservices/:id', deleteService)
 
 router.put('/updateservices/:id', updateService)
