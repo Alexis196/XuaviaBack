@@ -7,7 +7,6 @@ import teamRouter from './team.js'
 import technologiesRouter from './technologies.js'
 
 
-
 const router = express.Router()
 
 router.use('/users', userRoute)
