@@ -30,35 +30,40 @@ const controller = {
         try {
             let user = await User.findOneAndUpdate(
                 { mail: req.user.mail },
-                { is_online: true },
+                { $set: { is_online: true, rol: req.user.rol } },
                 { new: true }
-            )
-            user.password = null
+            ).populate('rol');
+
+            user.password = null;
+
             const token = jsonwebtoken.sign(
-                {id: user.id},
+                { id: user.id },
                 process.env.SECRET,
-                {expiresIn: 60*60*24*30}
-                )
+                { expiresIn: 60 * 60 * 24 * 30 }
+            );
+
             return res.status(200).json({
                 success: true,
                 message: '¡Usuario online!',
-                name: req.user.name, 
-                mail: req.user.mail, 
-                photo: req.user.photo,
+                name: req.user.name,
+                mail: req.user.mail,
+                rol: user.rol._id, 
                 token: token
-            })
+            });
         } catch (error) {
-        next(error)
+            next(error);
         }
-        },
+    },
+
+
 
     sign_out: async (req, res, next) => {
         const { mail } = req.user
         try {
             await User.findOneAndUpdate(
-            { mail },
-            { is_online: false },
-            { new: true }
+                { mail },
+                { is_online: false },
+                { new: true }
             )
             return res.status(200).json({
                 success: true,
@@ -67,19 +72,19 @@ const controller = {
         } catch (error) {
             next(error)
         }
-        },
+    },
 
-        token: async (req, res, next) => {
-            let { user } = req
-            try {
-                req.body.success = true
-                req.body.sc = 200
-                req.body.data = { user }
-                return res.status(200).json(user)
-            } catch (error) {
-                next(error)
-            }
-        },
+    token: async (req, res, next) => {
+        let { user } = req
+        try {
+            req.body.success = true
+            req.body.sc = 200
+            req.body.data = { user }
+            return res.status(200).json(user)
+        } catch (error) {
+            next(error)
+        }
+    },
 }
 
 
