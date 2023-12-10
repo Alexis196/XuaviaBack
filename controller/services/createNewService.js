@@ -3,8 +3,8 @@ import Service from '../../models/Service.js';
 const createNewService = async (req, res, next) => {
   try {
     const userId = req.user._id;
-
     const defaultImageUrl = 'https://i.postimg.cc/d0CY3k12/logo.png';
+
     const service = await Service.create({
       user: userId,
       name: req.body.name,
